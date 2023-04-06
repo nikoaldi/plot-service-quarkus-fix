@@ -1,6 +1,5 @@
 package org.acme;
 
-import io.smallrye.reactive.messaging.annotations.Broadcast;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -8,7 +7,6 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
-import org.eclipse.microprofile.reactive.messaging.Outgoing;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -32,6 +30,13 @@ public class PlotService {
     @GET
     @Path("/kafkaconsumer")
     public List<Plot> getKafkaConsumer(){
+        return kafkaConsumer;
+    }
+
+
+    @GET
+    @Path("/cobaGit")
+    public List<Plot> getCobaGit(){
         return kafkaConsumer;
     }
 
@@ -173,5 +178,8 @@ public class PlotService {
     public void addKafkaToList(Plot plot){
         kafkaConsumer.add(plot);
     }
+
+
+
 
 }
